@@ -1,0 +1,1459 @@
+import pandas as pd
+from xlwt import Workbook
+import warnings
+warnings.filterwarnings('ignore')
+#work=Workbook()
+#sheety=work.add_sheet('sheety')
+df=pd.read_excel('exam.xlsx')
+orig=pd.read_excel('exam2.xlsx')
+depts=orig.sort_values(by=['designation','dept']) 
+
+deptname=['CSE','CV','MECH','EEE','EC','IEM','CE','EIE','ARCH'         ,'ISC','TC','ME','BT','PHY','CHEM','MAT','HSS','MCA','MBA']
+depts=orig
+depts=depts.fillna(0)
+depts=depts.sort_values(by=['prob'])  
+total=df.sum(axis=0)
+print(total)                            
+tr=(total.Relief)    
+list1=[]
+print(len(list1))
+no_of_days=(len(df.index))
+print(df.Relief[0])
+no_of_staff=(len(depts.index))
+for x in range (0,no_of_days):
+    list1.append(df.Relief[x])
+print(sum(list1))
+sum_a=0
+for i in range(0,no_of_staff):
+     if(depts.designation[i]=='A' and depts.squad[i]==0 and depts.vs[i]==0):
+         sum_a=sum_a+1
+  
+sum_o=0
+
+for i in range(0,no_of_staff):
+if(depts.designation[i]=='O' and depts.squad[i]==0 and depts.vs[i]==0):
+sum_o=sum_o+1
+sum_p=0
+for i in range(0,no_of_staff):
+if(depts.designation[i]=='P' and depts.squad[i]==0 and depts.vs[i]==0):
+sum_p=sum_p+1
+sum_prob=0
+for i in range(0,no_of_staff):
+if(depts.prob[i]==1 and depts.squad[i]==0 and depts.vs[i]==0):
+sum_prob=sum_prob+1
+sum_h=0
+for i in range(0,no_of_staff):
+if(depts.designation[i]=='H' and depts.squad[i]==0 and depts.vs[i]==0):
+sum_h=sum_h+1
+relief_staff=sum_o+sum_a-sum_prob
+leave={}
+for y in range (0,no_of_staff):
+    leave[depts.initials[y]]=[]
+
+for i in range (0,no_of_staff):
+    
+    if(depts.Leave[i]!=0):
+        
+        k=depts.Leave[i].split(',')
+        
+        init=depts.initials[i]
+        
+        
+        
+        for j in range (0,len(k)):
+            
+            leave[init].append(k[j])
+
+
+
+
+
+
+
+    
+dept_day_flag1={}
+
+for y in range (0,no_of_days):
+    dept_day_flag1[y]=[]    dept_count={}
+
+
+for q in deptname:
+    dept_count[q]=[]
+          
+for j in range(0,no_of_staff):
+    if(depts.designation[j]=='A' or depts.designation[j]=='O' or depts.designation[j]=='P'):    
+#CSE   
+        if(depts.dept[j]=='CSE'):
+         cas=depts.dept[j]
+            dept_count[cas].append(depts.initials[j])
+        
+#CV
+        elif(depts.dept[j]=='CV'):
+            cas=depts.dept[j]
+            dept_count[cas].append(depts.initials[j])
+#MECH
+
+        elif(depts.dept[j]=='MECH'):
+        
+            cas=depts.dept[j]
+            dept_count[cas].append(depts.initials[j])
+#EEE
+        elif(depts.dept[j]=='EEE'):
+        
+            cas=depts.dept[j]
+            dept_count[cas].append(depts.initials[j])
+    
+#EC
+        elif(depts.dept[j]=='EC'):
+        
+            cas=depts.dept[j]
+            dept_count[cas].append(depts.initials[j])
+#IEM
+
+        elif(depts.dept[j]=='IEM'):
+        
+            cas=depts.dept[j]
+            dept_count[cas].append(depts.initials[j])
+#CE
+        elif(depts.dept[j]=='CE'):
+        
+            cas=depts.dept[j]
+            dept_count[cas].append(depts.initials[j])
+#EIE
+        elif(depts.dept[j]=='EIE'):
+        
+            cas=depts.dept[j]
+            dept_count[cas].append(depts.initials[j])
+#ARCH
+        elif(depts.dept[j]=='ARCH'):
+        
+            cas=depts.dept[j]
+            dept_count[cas].append(depts.initials[j])
+#ISC
+        elif(depts.dept[j]=='ISC'):
+            
+            cas=depts.dept[j]
+            dept_count[cas].append(depts.initials[j])
+#TC
+        elif(depts.dept[j]=='TC'):
+            
+            cas=depts.dept[j]
+            dept_count[cas].append(depts.initials[j])
+#ME
+        elif(depts.dept[j]=='ME'):
+                
+            cas=depts.dept[j]
+            dept_count[cas].append(depts.initials[j])
+#BT
+        elif(depts.dept[j]=='BT'):
+            
+            cas=depts.dept[j]
+            dept_count[cas].append(depts.initials[j])
+#PHY
+        elif(depts.dept[j]=='PHY'):
+            
+            cas=depts.dept[j]
+            dept_count[cas].append(depts.initials[j])
+#CHEM
+        elif(depts.dept[j]=='CHEM'):
+        
+            cas=depts.dept[j]
+            dept_count[cas].append(depts.initials[j])
+#MAT
+        elif(depts.dept[j]=='MAT'):
+            
+            cas=depts.dept[j]
+            dept_count[cas].append(depts.initials[j])
+#HSS
+        elif(depts.dept[j]=='HSS'):
+            
+            cas=depts.dept[j]
+            dept_count[cas].append(depts.initials[j])
+#MCA
+        elif(depts.dept[j]=='MCA'):
+            
+            cas=depts.dept[j]
+            dept_count[cas].append(depts.initials[j])
+#MBA  
+        elif(depts.dept[j]=='MBA'):
+            
+            cas=depts.dept[j]
+            dept_count[cas].append(depts.initials[j])
+                                
+total_rs_staff=sum_a+sum_o+sum_p
+
+total_to_be_rs=total.Rooms
+
+def ratios(x,y,z):
+    tt=0
+    i=2
+    j=1
+    while(tt<z):
+        
+        tt=(i*x)+(j*y)
+        i+=1
+        j+=1
+    print(i)
+    print(j)
+    print(tt)
+    return (i-1,j-1)
+    
+ sum_p_prob=0
+
+sum_p_nonp=0
+for j in range(0,no_of_staff):
+    
+    if(depts.designation[j]=='P'):
+        
+        if(depts.prob[j]==1):
+            
+            sum_p_prob+=1
+        
+            #depts.duties[j]=3
+            
+        else:
+            
+            #depts.duties[j]=2
+            
+            sum_p_nonp+=1
+            
+p,q=ratios(sum_p_prob,sum_p_nonp,total.DS)
+p*sum_p_prob+q*sum_p_nonp
+
+
+for j in range(0,no_of_staff):
+    
+    if(depts.designation[j]=='P'):
+        
+        if(depts.prob[j]==1):
+              depts.duties_M[j]=p
+        else:
+          depts.duties_M[j]=q
+            
+for j in range(0,no_of_staff):
+    
+    if(depts.designation[j]=='H'):
+       depts.duties_M[j]=2
+           dup=depts.sort_values(by=['designation','prob'],ascending=[False,True]) 
+depts=dup
+depts=depts.reset_index(drop=True)
+total.DS
+total.ACS
+list2=[]
+for x in range(0,no_of_days):
+    
+    list2.append(df.ACS[x])
+acs={}
+for y in range (0,no_of_days):
+    acs[y]=[]
+print('assigning acs duties')
+count=0
+day=0
+fc=0
+while(count<total.ACS):
+    
+    for j in range(fc,no_of_staff):
+            if(day==no_of_days):
+                day=0
+            if(list2[day]==0):
+                day=day+1
+            
+            if(depts.designation[j]=='H'):
+            
+                if(day==no_of_days):
+                    day=0
+                    
+                name=depts.dept[j]
+                    #print(name)
+                    
+                if(list2[day]>0 and depts.initials[j] not in acs[day] and 
+                   df.Date[day] not in leave[depts.initials[j]] and depts.duties_M[j]>0):
+                        
+                    acs[day].append(depts.initials[j])
+                    list2[day]=list2[day]-1
+                    depts.duties_M[j]=depts.duties_M[j]-1
+                    if(j==no_of_staff-1):
+                        j=0
+                    
+                    day=day+1
+                     count=count+1
+                    if(count==total.ACS):
+                        break
+    print('assigning ds duties')
+list3=[]
+
+for x in range(0,no_of_days):
+    
+    list3.append(df.DS[x])
+
+
+ds={}
+for y in range (0,no_of_days):
+    ds[y]
+dept_day_flag={}
+
+for y in range (0,no_of_days):
+    dept_day_flag[y]=[]    
+count=0
+day=0
+while(count<total.DS):
+for j in range(fc,no_of_staff):
+        
+        if(depts.designation[j]=='P'):
+             if(list3[day]==0):
+                 day=day+1  
+            if(day==no_of_days):
+                day=0    
+            name=depts.dept[j]
+            if(name not in dept_day_flag[day] and (list3[day]) >0  and depts.duties_M[j]>0 and depts.initials[j] not in ds[day] and df.Date[day] not in leave[depts.initials[j]]):
+                
+                    dept_day_flag[day].append(name)
+                    print(depts.initials[j] +"\t"+ str(df.Date[day])+"\t"+df.Time[day]+"\t"+depts.dept[j])
+                    depts.duties_M[j]=depts.duties_M[j]-1
+                    count=count+1
+                    ds[day].append(depts.initials[j])
+                    list3[day]=list3[day]-1
+                    if(list3[day]==0):
+                        day=day+1
+                        
+                    if(j==no_of_staff-1):
+                        j=0
+                        
+                    if(count==total.DS):
+                        
+                        break
+sum_o_prob=0
+sum_o_nonp=0
+for j in range(0,no_of_staff):
+    
+    if(depts.designation[j]=='O'):
+        
+        if(depts.prob[j]==1):
+            sum_o_prob+=1
+        else:
+            sum_o_nonp+=1            
+            
+sum_a_prob=0
+sum_a_nonp=0
+for j in range(0,no_of_staff):
+    
+    if(depts.designation[j]=='A'):
+        
+        if(depts.prob[j]==1):
+            sum_a_prob+=1
+        else:
+            sum_a_nonp+=1               
+
+rr=round(total_to_be_rs/(sum_a+sum_o),0)
+
+
+
+
+
+list_count_dept={}
+
+for j in deptname:
+    list_count_dept[j]=len(dept_count[j])
+
+
+count_of_depts=0
+
+for j in deptname:
+    count_of_depts+=list_count_dept[j]
+
+
+
+
+
+#def ratios(i,count_of_depts,list_count_dept):
+
+    
+    #for i in df.Rooms:
+minval=min(list_count_dept.values())
+    
+    
+    
+ratio_list={}
+
+    
+for j in deptname:
+    
+    num=list_count_dept[j]/minval
+    
+    num=round(num,0)
+        
+    ratio_list[j]=num
+        
+#    return ratio_list
+    
+
+
+summ=0
+for x in ratio_list.values():
+    
+    summ=summ+x
+    
+summ
+
+
+
+
+ind=[]
+for j in range(0,no_of_days):
+    
+    ind.append(j)
+
+dept_ratio=pd.DataFrame(index=ind,columns=deptname)
+
+
+
+
+day_wise_duties=[]
+
+for j in range(0,no_of_days):
+    day_wise_duties.append(df.Rooms[j])
+
+
+
+
+for x in range(0,no_of_days):
+    
+    
+   # q=ratios(day_wise_duties[x],count_of_depts,list_count_dept)
+    
+   # print(q)
+    
+    for i in range(0,len(ratio_list)):
+        
+        can=deptname[i]
+        can
+        
+        dept_ratio[can].values[x]=ratio_list[can]
+    
+
+#dept_ratio['CSE'].values[0]=ratio_list['CSE']
+
+rs={}
+
+for y in range (0,no_of_days):
+    rs[y]=[]
+
+
+
+
+for j in depts.initials:
+    print(j)
+
+sum_m=0
+sum_n=0
+
+        
+
+sum_m=sum(df.Rooms[df['Time']=='M'])
+sum_n=sum(df.Rooms[df['Time']=='N'])
+
+def ratios(x,y,z):
+    tt=0
+    i=2
+    j=1
+    while(tt<z):
+        
+        tt=(i*x)+(j*y)
+        i+=1
+        j+=1
+    print(i)
+    print(j)
+    print(tt)
+    return (i-1,j-1)
+
+
+r_a_m,r_o_m=ratios(sum_a,sum_o,sum_m)
+
+r_a_n,r_o_n=ratios(sum_a,sum_o,sum_n)
+
+r_a_m*sum_a+r_o_m*sum_o
+
+r_a_n*sum_a+r_o_n*sum_o
+
+
+
+for j in range(0,no_of_staff):
+    
+    
+    if(depts.designation[j]=='O'):
+        
+        if(depts.prob[j]==1):
+        
+            depts.duties_M[j]=r_o_m
+            depts.duties_N[j]=r_o_n+1
+        elif(depts.prob[j]==0):
+            depts.duties_M[j]=r_o_m
+            depts.duties_N[j]=r_o_n
+        
+    elif(depts.designation[j]=='A'):
+        
+        if(depts.prob[j]==1):
+        
+            depts.duties_M[j]=r_a_m
+            depts.duties_N[j]=r_a_n+1
+        elif(depts.prob[j]==0):
+            depts.duties_M[j]=r_a_m
+            depts.duties_N[j]=r_a_n
+
+        
+
+a1=sum(depts.duties_M)
+
+
+a2=sum(depts.duties_N)
+
+a1+a2
+
+duties_o_m=sum(depts.duties_M[depts['designation']=='O'])
+duties_o_n=sum(depts.duties_N[depts['designation']=='O'])
+
+
+duties_a_m=sum(depts.duties_M[depts['designation']=='A'])
+duties_a_n=sum(depts.duties_N[depts['designation']=='A'])
+
+duties_o=duties_o_m+duties_o_n
+
+
+count=0
+for x in range(0,no_of_days):
+    
+    count=count+df.Rooms[x]
+    b=x
+    if(count>duties_o):
+        break
+    
+    
+depts=depts.reset_index(drop=True)
+count=0
+i=0    
+
+b=b*4
+
+
+#--------------------------------
+
+
+count=0
+day=0
+fc=0
+j=0
+
+
+print("Assigning Associate duties")
+
+
+for index in range(0,no_of_staff):
+         
+         
+         
+        
+         if(depts.designation[index]=='O'):
+         
+         
+              
+              if(day>(b-1)):
+                  day=0
+              if(day_wise_duties[day]==0):
+                  day=day+1
+            
+              while(depts.duties_M[index]>0):
+                  
+                  
+                  
+            
+                  if(day_wise_duties[day]==0):
+                      day=day+1
+                      
+                  if(day>(b-1)):
+                      day=0
+                    
+                  name=depts.dept[index]
+                   
+                  #print(name)
+                  
+                  high=df.Date[day]
+                  
+                  l=[]
+                  
+                  l=df[df['Date']==high].index.values.astype(int)
+
+                  
+                  g=depts.initials[index]
+                  
+                  
+                  if(len(l)==2):
+                      
+                  
+                  
+                      if(day_wise_duties[day]>0 and depts.initials[index] not in rs[l[0]] and   depts.initials[index] not in rs[l[1]]
+                         and dept_ratio[name].values[day]>0 and df.Date[day] not in leave[depts.initials[index]] and
+                         depts.initials[index] not in rs[day] and depts.squad[j]!=1 and depts.vs[j]!=1):
+                    
+                          dept_ratio[name].values[day]=dept_ratio[name].values[day]-1
+                      
+                          print(g)
+                    
+                          rs[day].append(depts.initials[index])
+                
+                          day_wise_duties[day]=day_wise_duties[day]-1
+                    
+                          depts.duties_M[index]=depts.duties_M[index]-1
+                    
+                          day=day+3
+                      
+                          if(day>(b-1)):
+                              day=0
+                
+                          count=count+1
+                      else:
+                         day=day+1
+                         if(day>(b-1)):
+                             day=0
+                          
+                      
+                        
+                  if(len(l)==1):
+                      
+                      if(day_wise_duties[day]>0 and depts.initials[index] not in rs[l[0]]
+                         and dept_ratio[name].values[day]>0 and df.Date[day] not in leave[depts.initials[index]] and
+                         depts.initials[index] not in rs[day] and depts.squad[j]!=1 and depts.vs[j]!=1):
+                    
+                          dept_ratio[name].values[day]=dept_ratio[name].values[day]-1
+                      
+                          print(g)
+                    
+                          rs[day].append(depts.initials[index])
+                
+                          day_wise_duties[day]=day_wise_duties[day]-1
+                    
+                          depts.duties_M[index]=depts.duties_M[index]-1
+                    
+                          day=day+3
+                      
+                          if(day>(b-1)):
+                              day=0
+                
+                          count=count+1
+                      else:
+                         day=day+1
+                         if(day>(b-1)):
+                             day=0
+                      
+                      
+                      
+              while(depts.duties_N[index]>0):
+                  
+                  
+                  
+            
+                  if(day_wise_duties[day]==0):
+                      day=day+1
+                      
+                  if(day>(b-1)):
+                      day=0
+                    
+                  name=depts.dept[index]
+                   
+                  #print(name)
+                  
+                  high=df.Date[day]
+                  
+                  l=[]
+                  
+                  l=df[df['Date']==high].index.values.astype(int)
+
+                  
+                  g=depts.initials[index]
+                  
+                  if(len(l)==2):
+                    
+                      if(day_wise_duties[day]>0  and depts.initials[index] not in rs[l[0]] and   depts.initials[index] not in rs[l[1]]
+                         and dept_ratio[name].values[day]>0 and df.Date[day] not in leave[depts.initials[index]] and
+                         depts.initials[index] not in rs[day]):
+                    
+                          dept_ratio[name].values[day]=dept_ratio[name].values[day]-1
+                      
+                          print(g)
+                    
+                          rs[day].append(depts.initials[index])
+                
+                          day_wise_duties[day]=day_wise_duties[day]-1
+                    
+                          depts.duties_N[index]=depts.duties_N[index]-1
+                    
+                          day=day+3
+                      
+                          if(day>(b-1)):
+                              day=0
+                
+                          count=count+1
+                      else:
+                          day=day+1
+                          if(day>(b-1)):
+                              day=0
+                      
+                        
+                        
+                  if(len(l)==1):
+                      
+                      if(day_wise_duties[day]>0  and depts.initials[index] not in rs[l[0]] and   depts.initials[j] not in rs[l[1]]
+                         and dept_ratio[name].values[day]>0 and df.Date[day] not in leave[depts.initials[index]] and
+                         depts.initials[index] not in rs[day]):
+                    
+                          dept_ratio[name].values[day]=dept_ratio[name].values[day]-1
+                      
+                          print(g)
+                    
+                          rs[day].append(depts.initials[index])
+                
+                          day_wise_duties[day]=day_wise_duties[day]-1
+                    
+                          depts.duties_N[index]=depts.duties_N[index]-1
+                    
+                          day=day+3
+                      
+                          if(day>(b-1)):
+                              day=0
+                
+                          count=count+1
+                      else:
+                          day=day+1
+                          if(day>(b-1)):
+                              day=0
+                    
+                      
+         if(count==duties_o):
+               break
+         day=day+1 
+         if(day>(b-1)):
+               day=0
+         
+
+
+#DUTIES
+
+
+print("assigning assisstant duties")
+day=0    
+count=0  
+fc=0
+i=0
+
+
+duties_p=total_to_be_rs-duties_o  
+
+ 
+
+while(sum(day_wise_duties)>0):
+    
+    print("iteration"+str(i))
+    print(count)
+    print("--------------")
+    i=i+1
+    for j in range(0,no_of_staff):
+         
+            #j=depts[depts['initials']==x].index.values.astype(int)[0]
+
+        
+        
+            if(day==no_of_days):
+                day=0
+            if(day_wise_duties[day]==0):
+                day=day+1
+            
+            if(depts.designation[j]=='A' or depts.designation[j]=='O'):
+            
+                if(day==no_of_days):
+                    day=0
+                    
+                name=depts.dept[j]
+                    #print(name)
+                if(df.Time[day]=='N' and depts.duties_N[j]>0 and day_wise_duties[day]>0  and dept_ratio[name].values[day]>0
+                   and df.Date[day] not in leave[depts.initials[j]] and depts.initials[j] not in rs[day] and depts.squad[j]!=1 and depts.vs[j]!=1):
+                    
+                    if((day-1)==-1 and depts.initials[j] not in rs[day+1]):
+                        
+                    
+                    
+                    
+                        dept_ratio[name].values[day]=dept_ratio[name].values[day]-1
+                    
+                        rs[day].append(depts.initials[j])
+                
+                        day_wise_duties[day]=day_wise_duties[day]-1
+                    
+                        depts.duties_N[j]=depts.duties_N[j]-1
+                
+                       
+                    
+                        day=day+1
+                
+                        count=count+1
+                        #if(sum(depts.relief))
+                        if(count==duties_p):
+                        
+                        
+                            break
+                        else:
+                            continue
+                        
+                        
+                    elif(day==(no_of_days-1) and  depts.initials[j] not in rs[day-1]):
+                        
+                        dept_ratio[name].values[day]=dept_ratio[name].values[day]-1
+                    
+                        rs[day].append(depts.initials[j])
+                
+                        day_wise_duties[day]=day_wise_duties[day]-1
+                    
+                        depts.duties_N[j]=depts.duties_N[j]-1
+                
+                        
+                    
+                        day=day+1
+                
+                        count=count+1
+                        #if(sum(depts.relief))
+                        if(count==duties_p):
+                        
+                        
+                            break
+                        else:
+                            continue
+                        
+                        
+                    elif(day>0 and day<no_of_days):  
+                        
+
+                        if(depts.initials[j] not in rs[day-1] and depts.initials[j] not in rs[day+1]):
+                        
+                            dept_ratio[name].values[day]=dept_ratio[name].values[day]-1
+                    
+                            rs[day].append(depts.initials[j])
+                
+                            day_wise_duties[day]=day_wise_duties[day]-1
+                    
+                            depts.duties_N[j]=depts.duties_N[j]-1
+                
+                           
+                    
+                            day=day+1
+                
+                            count=count+1
+                            #if(sum(depts.relief))
+                            if(count==duties_p):
+                        
+                        
+                                break
+                            else:
+                                continue
+                        
+                elif(df.Time[day]=='M' and depts.duties_M[j]>0 and day_wise_duties[day]>0  and dept_ratio[name].values[day]>0
+                   and df.Date[day] not in leave[depts.initials[j]] and depts.initials[j] not in rs[day] and depts.squad[j]!=1 and depts.vs[j]!=1 ):
+                    
+                    if((day-1)==-1 and depts.initials[j] not in rs[day+1]):
+                        
+                       dept_ratio[name].values[day]=dept_ratio[name].values[day]-1
+                    
+                        rs[day].append(depts.initials[j])
+                
+                        day_wise_duties[day]=day_wise_duties[day]-1
+                    
+                        depts.duties_M[j]=depts.duties_M[j]-1
+                
+                       day=day+1
+                
+                        count=count+1
+                        #if(sum(depts.relief))
+                        if(count==duties_p):
+                        
+                        
+                            break
+                        else:
+                            continue
+                        
+                        
+                        
+                    elif(day==(no_of_days-1) and  depts.initials[j] not in rs[day-1]):
+                        
+                        dept_ratio[name].values[day]=dept_ratio[name].values[day]-1
+                    
+                        rs[day].append(depts.initials[j])
+                
+                        day_wise_duties[day]=day_wise_duties[day]-1
+                    
+                        depts.duties_M[j]=depts.duties_M[j]-1
+                
+                       
+                    
+                        day=day+1
+                
+                        count=count+1
+                        #if(sum(depts.relief))
+                        if(count==duties_p):
+                        
+                        
+                            break
+                        else:
+                            continue
+                        
+                        
+                    elif(day>0 and day<no_of_days):  
+                        
+
+                        if(depts.initials[j] not in rs[day-1] and depts.initials[j] not in rs[day+1]):
+                        
+                            dept_ratio[name].values[day]=dept_ratio[name].values[day]-1
+                    
+                            rs[day].append(depts.initials[j])
+                
+                            day_wise_duties[day]=day_wise_duties[day]-1
+                    
+                            depts.duties_M[j]=depts.duties_M[j]-1
+                
+                            
+                    
+                            day=day+1
+                
+                            count=count+1
+                            #if(sum(depts.relief))
+                            if(count==duties_p):
+                        
+                        
+                                break
+                            else:
+                                continue
+                    
+  
+    
+    
+sum(day_wise_duties)
+
+    
+list1=[]
+print(len(list1))
+
+
+no_of_days=(len(df.index))
+print(df.Relief[0])
+no_of_staff=(len(depts.index))
+
+tr
+
+for x in range (0,no_of_days):
+    list1.append(df.Relief[x])
+print(sum(list1))
+
+df.Date[0]
+for j in range(0,no_of_staff):
+    
+    depts.relief[j]=1
+
+
+#RELIEF DUTIES
+print("assigning relief duties")
+
+sum(depts.relief[depts['designation']=='O'])
+relief_duties={}
+
+
+for y in range (0,no_of_days):
+    relief_duties[y]=[]
+    
+minus=0
+
+for j in range(0,no_of_staff):
+    
+    if(depts.designation[j]=='O' and depts.squad[j]==1):
+        
+        minus=minus+1
+        
+        
+    if(depts.designation[j]=='O' and depts.vs[j]==1):
+         minus=minus+1
+
+    
+relief_o=sum(depts.relief[depts['designation']=='O'])-(minus)
+count=0
+for x in range(0,no_of_days):
+    
+    count=count+df.Rooms[x]
+    b=x
+    if(count>duties_o):
+        break
+
+i=0
+
+b=(b*4)-2
+count=0
+day=0
+fc=0
+j=0
+for x in range(0,10):    
+    while(count<relief_o):  
+    
+    
+        start=count
+     
+        for j in range(0,no_of_staff):
+                  
+            print("iteration"+str(i))
+            print(count)
+            print("--------------")
+            i=i+1
+            initcount=count
+            if(depts.designation[j]=='O'):
+         
+         
+              
+                if(day>(b-1)):
+                    day=0
+                if(list1[day]==0):
+                        day=day+1
+                if(list1[day]==0):
+                      day=day+1
+                      
+                if(day>(b-1)):
+                      day=0
+                    
+                name=depts.dept[j]
+                   
+                  #print(name)
+                  
+                g=depts.initials[j]
+                  
+                high=df.Date[day]
+                  
+                l=[]
+                  
+                l=df[df['Date']==high].index.values.astype(int)
+
+
+                initday=day
+                 
+                      
+                if(len(l)==2):
+                          
+                          if(depts.initials[j] not in rs[l[0]] and depts.initials[j] not in rs[l[1]] and
+                             depts.initials[j] not in relief_duties[l[0]] and depts.initials[j] not in relief_duties[l[1]]
+                             and  df.Date[day] not in leave[depts.initials[j]] and  list1[day]>0  and depts.squad[j]!=1 and depts.vs[j]!=1
+                             and depts.relief[j]==1):
+                    
+                      
+                              print(g)
+                    
+                              relief_duties[day].append(depts.initials[j])
+                
+                              list1[day]=list1[day]-1
+                    
+                              depts.relief[j]=depts.relief[j]-1
+                    
+                              day=day+1
+                      
+                              if(day>(b-1)):
+                                  day=0
+                
+                              count=count+1
+                              
+                          else:
+                              day=day+1
+                              if(day>(b-1)):
+                                  day=0
+                          
+                              if(initday==day):
+                                  break
+                              
+            if(len(l)==1):
+                          
+                          if(depts.initials[j] not in rs[l[0]] and depts.initials[j] not in relief_duties[l[0]]
+                            and  df.Date[day] not in leave[depts.initials[j]] and  list1[day]>0  and depts.squad[j]!=1
+                            and depts.relief[j]==1 and depts.vs[j]!=1):
+                    
+                              print(g)
+                    
+                              relief_duties[day].append(depts.initials[j])
+                
+                              list1[day]=list1[day]-1
+                    
+                              depts.relief[j]=depts.relief[j]-1
+                    
+                              day=day+1
+                      
+                              if(day>(b-1)):
+                                  day=0
+                
+                              count=count+1       
+                              
+                          else:
+                             day=day+1
+                             if(day>(b-1)):
+                                 day=0
+                           
+                             if(initday==day):
+                                 break
+                        
+                if(initday==day):
+                      break
+                  
+                          
+                                   
+                              
+                      
+            if(count==relief_o):
+               break
+            day=day+1 
+            if(day>(b-1)):
+               day=0
+         
+ 
+        if(count==start):
+            break
+
+
+
+sum(relief_duties)
+relief_a=sum(list1)
+sum(depts.relief[depts['designation']=='A'])
+r_left=0
+for j in range(0,no_of_staff):
+    
+    if(depts.designation[j]=='A' and depts.prob[j]==0 and depts.squad[j]==0 and depts.vs[j]==0):
+        
+        r_left=r_left+1
+        
+ 
+    
+    
+
+
+    
+i=0
+count=0
+day=0
+fc=0
+j=0
+
+b=no_of_days-1
+for x in range(0,10):
+    while(sum(list1)>0):
+    
+        start=count
+    
+        print("iteration"+str(i))
+        print(count)
+        print("--------------")
+        i=i+1
+    
+        if(day>b):
+            day=0
+        if(list1[day]==0):
+            day=day+1
+        if(day>b):
+            day=0
+
+        for j in range(0,no_of_staff):
+         
+             if(day>b):
+                 day=0
+             if(list1[day]==0):
+                 day=day+1
+             if(day>b):
+                 day=0
+        
+             if(depts.designation[j]=='A' and depts.prob[j]==0):
+         
+         
+              
+                  if(day>b):
+                      day=0
+                  if(list1[day]==0):
+                      day=day+1
+                  if(day>b):
+                      day=0
+                   name=depts.dept[j]
+                    g=depts.initials[j]
+                  if(day>b):
+                      day=0
+                  high=df.Date[day]
+                  
+                  l=[]
+                  
+                  l=df[df['Date']==high].index.values.astype(int)
+
+
+ if(len(l)==2):
+                          
+                      if(depts.initials[j] not in rs[l[0]] and depts.initials[j] not in rs[l[1]] and
+                             depts.initials[j] not in relief_duties[l[0]] and depts.initials[j] not in relief_duties[l[1]]
+                             and  df.Date[day] not in leave[depts.initials[j]] and  list1[day]>0  and depts.squad[j]!=1 and depts.vs[j]!=1
+                             and depts.relief[j]==1):
+                    
+                      
+                              print(g)
+                    
+                              relief_duties[day].append(depts.initials[j])
+                
+                              list1[day]=list1[day]-1
+                    
+                              depts.relief[j]=depts.relief[j]-1
+                    
+                              day=day+1
+                      
+                              if(day>b):
+                                  day=0
+                
+                              count=count+1
+                              
+                      else:
+                              day=day+1
+                              if(day>b):
+                                  day=0
+                       if(len(l)==1):
+                          
+                      if(depts.initials[j] not in rs[l[0]] and depts.initials[j] not in relief_duties[l[0]]
+                            and  df.Date[day] not in leave[depts.initials[j]] and  list1[day]>0  and depts.squad[j]!=1
+                            and depts.relief[j]==1 and depts.vs[j]!=1):
+                    
+                              print(g)
+                    
+                              relief_duties[day].append(depts.initials[j])
+                
+                              list1[day]=list1[day]-1
+                    
+                              depts.relief[j]=depts.relief[j]-1
+                    
+                              day=day+1
+                      
+                              if(day>b):
+                                  day=0
+                
+                              count=count+1       
+                              
+                      else:
+                             day=day+1
+                             if(day>(b)):
+                                 day=0
+                           
+ if(count==relief_a):
+                 break
+             day=day+1 
+             if(day>b):
+                 day=0
+                 
+        if(count==start):
+            break                 
+                
+         
+            
+relief_left=sum(list1)    
+i=0
+count=0
+day=0
+fc=0
+j=0
+b=no_of_days-1
+while(sum(list1)>0):
+     print("iteration"+str(i))
+        print(count)
+        print("--------------")
+        i=i+1
+    
+        if(day>b):
+            day=0
+        if(list1[day]==0):
+            day=day+1
+        if(day>b):
+            day=0
+
+        for j in range(0,no_of_staff):
+         
+             if(day>b):
+                 day=0
+             if(list1[day]==0):
+                 day=day+1
+             if(day>b):
+                 day=0
+        
+             if(depts.designation[j]=='A')
+       if(day>b):
+                      day=0
+                  if(list1[day]==0):
+                      day=day+1
+                  if(day>b):
+                      day=0
+              
+                  
+                  
+              
+                      
+              
+                    
+                  name=depts.dept[j]
+                   
+                  #print(name)
+                  
+                  g=depts.initials[j]
+                  
+              
+                  if(day>b):
+                      day=0
+                  high=df.Date[day]
+                  
+                  l=[]
+                  
+                  l=df[df['Date']==high].index.values.astype(int)
+if(len(l)==2):
+                          
+                      if(depts.initials[j] not in rs[l[0]] and depts.initials[j] not in rs[l[1]] and
+                             depts.initials[j] not in relief_duties[l[0]] and depts.initials[j] not in relief_duties[l[1]]
+                             and  df.Date[day] not in leave[depts.initials[j]] and  list1[day]>0  and depts.squad[j]!=1 and depts.vs[j]!=1
+                             and depts.relief[j]==1):
+                    
+                      
+                              print(g)
+                    
+                              relief_duties[day].append(depts.initials[j])
+                
+                              list1[day]=list1[day]-1
+                    
+                              depts.relief[j]=depts.relief[j]-1
+                    
+                              day=day+1
+                      
+                              if(day>b):
+                                  day=0
+                
+                              count=count+1
+                              
+                      else:
+                              day=day+1
+                              if(day>b):
+                                  day=0
+                      if(len(l)==1):
+                          
+                      if(depts.initials[j] not in rs[l[0]] and depts.initials[j] not in relief_duties[l[0]]
+                            and  df.Date[day] not in leave[depts.initials[j]] and  list1[day]>0  and depts.squad[j]!=1
+                            and depts.relief[j]==1 and depts.vs[j]!=1):
+                    
+                              print(g)
+                    
+                              relief_duties[day].append(depts.initials[j])
+                
+                              list1[day]=list1[day]-1
+                    
+                              depts.relief[j]=depts.relief[j]-1
+                    
+                              day=day+1
+                      
+                              if(day>b):
+                                  day=0
+                
+                              count=count+1       
+                              
+                      else:
+                             day=day+1
+                             if(day>(b)):
+                                 day=0
+                           
+                             
+     if(count==relief_left):
+                 break
+             day=day+1 
+             if(day>b):
+                 day=0
+                 
+        
+         
+sum(list1)
+       
+print("saving on excel")
+work=Workbook()
+sheety=work.add_sheet('sheety')
+row=0
+    
+i=0
+y=0
+ for i in range(0,len(rs)):
+    j=df.Rooms[i]
+    
+    q=df.Relief[i]
+    
+    sheety.write(row+1,0,"DEPT")  
+    
+    sheety.write(row+1,1,"ACS")
+    
+    sheety.write(row+1,2,"DS")
+    
+    sheety.write(row+1,3,"RELIEF")  
+    
+    sheety.write(row+1,7,"ROOM DUTIES")
+
+    sheety.write(row,9,str(df.DateFormat[i]))  
+    
+    if(df.Time[i]=='M'):
+
+        sheety.write(row,10,"9:30 - 12:30")
+        
+    elif(df.Time[i]=='N'):
+
+        sheety.write(row,10,"1:30 - 4:30")
+ 
+    row=row+1
+    for p in deptname:
+        row=row+1
+        sheety.write(row,0,p)
+        
+        if(len(acs[i])!=0):
+            
+            new=acs[i][0]
+            
+            ind=depts[depts['initials']==new].index.values.astype(int)[0]
+            
+            if(depts.dept[ind]==p):
+                
+                sheety.write(row,1,new)
+        
+        if(len(ds[i])!=0):
+            
+            for y in range(0,len(ds[i])):
+            
+                neww=ds[i][y]
+            
+                pos=depts[depts['initials']==neww].index.values.astype(int)[0]
+            
+                if(depts.dept[pos]==p):
+                
+                    sheety.write(row,2,neww)
+        
+        col=3
+        for y in range(0,q):
+            
+            initr=relief_duties[i][y]
+            
+            placer=depts[depts['initials']==initr].index.values.astype(int)[0]
+
+            if(depts.dept[placer]==p):
+                
+                
+                sheety.write(row,col,initr)
+                
+                col=col+1
+         col=7
+        for x in range(0,j):
+            #print(relief_duties[i][x])
+            
+           
+            init=rs[i][x]
+            #print(init)
+            place=depts[depts['initials']==init].index.values.astype(int)[0]
+        
+            if(depts.dept[place]==p):
+                sheety.write(row,col,init)
+                
+                col=col+1row=row+4
+work.save('FINAL_EXCEL.xls')
